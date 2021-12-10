@@ -8,7 +8,7 @@ namespace ConsoleDraw.Commands
     public class FillCommand : ICommand
 	{
 		private int _x, _y;
-		private char _colour;
+		private char _newColour;
 		private Canvas _canvas;
 
 		public FillCommand(Canvas canvas)
@@ -31,7 +31,7 @@ namespace ConsoleDraw.Commands
 			if ((_x > _canvas._width - 2) || (_y > _canvas._height - 2))
 				throw new ArgumentException("point should be in the canvas");
 
-			if (!char.TryParse(cmd[2], out _colour))
+			if (!char.TryParse(cmd[2], out _newColour))
 				throw new ArgumentException("colour should be a char");
 		}
 
@@ -39,20 +39,21 @@ namespace ConsoleDraw.Commands
 		{
 			var queue = new Queue<Point>();
 			queue.Enqueue(new Point(_x, _y));
+			var targetColour = _canvas.cells[_x, _y];
 			var traversed = new HashSet<Point>();
 
 			while (queue.Any())
 			{
 				var current = queue.Dequeue();
 				if (!traversed.Add(current) ||
-					_canvas.cells[current.X, current.Y] == _canvas.lineChar ||
+					_canvas.cells[current.X, current.Y] != targetColour ||
 					_canvas.cells[current.X, current.Y] == _canvas.horizontalChar ||
 					_canvas.cells[current.X, current.Y] == _canvas.verticalChar)
 				{
 					continue;
 				}
 
-				_canvas.cells[current.X, current.Y] = _colour;
+				_canvas.cells[current.X, current.Y] = _newColour;
 				queue.Enqueue(new Point(current.X - 1, current.Y));
 				queue.Enqueue(new Point(current.X + 1, current.Y));
 				queue.Enqueue(new Point(current.X, current.Y - 1));
