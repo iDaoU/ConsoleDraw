@@ -4,9 +4,10 @@ namespace ConsoleDraw.Models
 {
     public class Canvas
 	{
-		public readonly char horizontalChar = '-';
-		public readonly char verticalChar = '|';
-		public readonly char lineChar = 'x';
+		public static readonly char horizontalChar = '-';
+		public static readonly char verticalChar = '|';
+		public static readonly char emptyChar = ' ';
+		public static readonly char lineChar = 'x';
 
 		public readonly int _width;
 
@@ -29,7 +30,7 @@ namespace ConsoleDraw.Models
 					else if (j == 0 || j == _width - 1)
 						cells[j, i] = verticalChar;
 					else
-						cells[j, i] = ' ';
+						cells[j, i] = emptyChar;
 				}
 			}
 		}

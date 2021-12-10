@@ -47,8 +47,8 @@ namespace ConsoleDraw.Commands
 				var current = queue.Dequeue();
 				if (!traversed.Add(current) ||
 					_canvas.cells[current.X, current.Y] != targetColour ||
-					_canvas.cells[current.X, current.Y] == _canvas.horizontalChar ||
-					_canvas.cells[current.X, current.Y] == _canvas.verticalChar)
+					_canvas.cells[current.X, current.Y] == Canvas.horizontalChar ||
+					_canvas.cells[current.X, current.Y] == Canvas.verticalChar)
 				{
 					continue;
 				}

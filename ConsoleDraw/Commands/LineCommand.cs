@@ -45,13 +45,13 @@ namespace ConsoleDraw.Commands
 			{
 				//draw vertical
 				for (int i = _y1; i <= _y2; i++)
-					_canvas.cells[_x1, i] = _canvas.lineChar;
+					_canvas.cells[_x1, i] = Canvas.lineChar;
 			}
 			else if (_y1 == _y2)
 			{
 				//draw horizontal
 				for (int i = _x1; i <= _x2; i++)
-					_canvas.cells[i, _y1] = _canvas.lineChar;
+					_canvas.cells[i, _y1] = Canvas.lineChar;
 			}
 
 			return _canvas;

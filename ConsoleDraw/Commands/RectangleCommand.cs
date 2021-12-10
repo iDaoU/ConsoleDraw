@@ -43,7 +43,7 @@ namespace ConsoleDraw.Commands
 				for (int j = _x1; j <= _x2; j++)
 				{
 					if (i == _y1 || i == _y2 || j == _x1 || j == _x2)
-						_canvas.cells[j, i] = _canvas.lineChar;
+						_canvas.cells[j, i] = Canvas.lineChar;
 					else
 						_canvas.cells[j, i] = ' ';
 				}
