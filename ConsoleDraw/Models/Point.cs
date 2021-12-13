@@ -1,6 +1,6 @@
 ﻿namespace ConsoleDraw.Models
 {
-    public class Point
+    public struct Point
 	{
 		public readonly int X;
 
@@ -11,16 +11,5 @@
 			X = x;
 			Y = y;
 		}
-
-		public override bool Equals(object obj)
-		{
-			var p = ((Point)obj);
-			return this.X == p.X && this.Y == p.Y;
-		}
-
-		public override int GetHashCode()
-		{
-			return new { X, Y }.GetHashCode();
-		}
-	}
+    }
 }
