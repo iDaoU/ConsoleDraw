@@ -2,51 +2,72 @@
 
 namespace ConsoleDraw.Models
 {
+    /// <summary>
+    /// Represent a 2D canvas for the drawing.
+    /// </summary>
     public class Canvas
-	{
-		public static readonly char horizontalChar = '-';
-		public static readonly char verticalChar = '|';
-		public static readonly char emptyChar = ' ';
-		public static readonly char lineChar = 'x';
+    {
+        public static readonly char horizontalChar = '-';
+        public static readonly char verticalChar = '|';
+        public static readonly char emptyChar = ' ';
+        public static readonly char lineChar = 'x';
 
-		public readonly int _width;
+        private readonly int _columns;
+        private readonly int _rows;
 
-		public readonly int _height;
+        public char[,] cells;
 
-		public char[,] cells;
+        /// <summary>
+        /// The width of the drawing area of the canvas.
+        /// </summary>
+        public int Width { get; }
 
-		public Canvas(int width, int height)
-		{
-			_width = width + 2;
-			_height = height + 2;
-			cells = new char[_width, _height];
+        /// <summary>
+        /// The height of the drawing area of the canvas.
+        /// </summary>
+        public int Height { get; }
 
-			for (int i = 0; i < _height; i++)
-			{
-				for (int j = 0; j < _width; j++)
-				{
-					if (i == 0 || i == _height - 1)
-						cells[j, i] = horizontalChar;
-					else if (j == 0 || j == _width - 1)
-						cells[j, i] = verticalChar;
-					else
-						cells[j, i] = emptyChar;
-				}
-			}
-		}
+        /// <summary>
+        /// Constructor that creates a <see cref="Canvas"/> with a specified <paramref name="height"/> and <paramref name="width"/>.
+        /// </summary>
+        public Canvas(int width, int height)
+        {
+            _columns = width + 2;
+            _rows = height + 2;
+            Width = width;
+            Height = height;
+            cells = new char[_columns, _rows];
 
-		public override string ToString()
-		{
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < _height; i++)
-			{
-				for (int j = 0; j < _width; j++)
-				{
-					sb.Append(cells[j, i]);
-				}
-				sb.AppendLine();
-			}
-			return sb.ToString();
-		}
-	}
+            for (int i = 0; i < _rows; i++)
+            {
+                for (int j = 0; j < _columns; j++)
+                {
+                    if (i == 0 || i == _rows - 1)
+                        cells[j, i] = horizontalChar;
+                    else if (j == 0 || j == _columns - 1)
+                        cells[j, i] = verticalChar;
+                    else
+                        cells[j, i] = emptyChar;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Creates a representation of the <see cref="Canvas"/> in string form.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < _rows; i++)
+            {
+                for (int j = 0; j < _columns; j++)
+                {
+                    sb.Append(cells[j, i]);
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+    }
 }
